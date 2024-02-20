@@ -21,13 +21,17 @@ const productSlice = createSlice({
     },
     deleteProductStart: (state) => {
       state.isFetching = true;
+      console.log("dlt action triggered -----1----")
     },
     deleteProductSuccess: (state, action) => {
+      // console.log("dlt action triggered ---------")
+      console.log(action.payload)
       state.isFetching = false;
       // Filter out the deleted product from the products array
-      state.products = state.products.filter((product) => product._id !== action.payload);
+      state.products = state.products.filter((product) => product._id !== action.payload.id);
     },
     deleteProductFailure: (state) => {
+      // console.log("dlt action failed ---------")
       state.isFetching = false;
       state.error = true;
     },
@@ -70,7 +74,8 @@ export const {
   updateProductSuccess,
   addProductStart,
   addProductFailure,
-  addProductSuccess
+  addProductSuccess,
+  test
 } = productSlice.actions;
 
 export default productSlice.reducer;

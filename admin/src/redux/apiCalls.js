@@ -1,6 +1,9 @@
 import { publicRequest, userRequest } from "../requestMethods";
-import { addProductFailure, addProductStart, addProductSuccess, deleteProductFailure, deleteProductStart, deleteProductSuccess, getProductFailure, getProductStart, getProductSuccess, updateProductFailure, updateProductStart, updateProductSuccess } from "./productRedux";
+import { addProductFailure, addProductStart, addProductSuccess, deleteProductFailure, deleteProductStart, deleteProductSuccess, getProductFailure, getProductStart, getProductSuccess, test, updateProductFailure, updateProductStart, updateProductSuccess } from "./productRedux";
 import { loginFailure, loginStart, loginSuccess } from "./userRedux"
+// import { useDispatch } from "react-redux";
+
+// const dispatch = useDispatch();
 
 export const login = async (dispatch,user)=>{
     dispatch(loginStart());
@@ -20,11 +23,15 @@ export const getProducts = async (dispatch)=>{
         dispatch(getProductFailure());
     }
 }
-export const deleteProducts = async (id,product,dispatch)=>{
+export const deleteProducts = async (id,dispatch)=>{
+    console.log("--------- dlt api call  ---------")
     dispatch(deleteProductStart());
+    
+
     try{
     // const res = await userRequest.delete(`/products/${id}`);
-        dispatch(deleteProductSuccess({id:id,product:product}));
+    // console.log(id)
+        dispatch(deleteProductSuccess({id}));
     }catch(err){
         dispatch(deleteProductFailure());
     }
@@ -44,6 +51,7 @@ export const addProducts = async (product,dispatch)=>{
     const res = await userRequest.post(`/products`,product);
         dispatch(addProductSuccess(res.data));
     }catch(err){
+        console.log()
         dispatch(addProductFailure());
     }
 }

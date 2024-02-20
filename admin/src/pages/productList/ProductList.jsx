@@ -16,7 +16,8 @@ export default function ProductList() {
   },[dispatch])
 
 
-  const handleDelete = (id) => {
+  const handleDelete = (id,dispatch) => {
+    // console.log("gulu dispatch dlt -----------")
     deleteProducts(id,dispatch)
   };
 
@@ -54,7 +55,7 @@ export default function ProductList() {
             </Link>
             <DeleteOutline
               className="productListDelete"
-              onClick={() => handleDelete(params.row._id)}
+              onClick={() => handleDelete(params.row._id,dispatch)}
             />
           </>
         );
